@@ -1,0 +1,4 @@
+services:
+#    mondo_booking.example:
+#        class: Mondo\BookingBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

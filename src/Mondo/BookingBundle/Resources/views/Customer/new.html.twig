@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>{{ 'customer.extra.new' | trans }}</h1>
+    {#{{ form_widget(form._token) }}#}
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('customer') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

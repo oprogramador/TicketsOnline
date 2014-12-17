@@ -1,0 +1,7 @@
+mondo_booking_customer:
+    resource: "@MondoBookingBundle/Resources/config/routing/customer.yml"
+    prefix:   /customer
+
+mondo_booking_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MondoBookingBundle:Default:index }
