@@ -29,6 +29,11 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        info_domain: %info_domain%
+        info_path: %info_path%
+        info_project: %info_project%
+
 
 # Assetic Configuration
 assetic:
