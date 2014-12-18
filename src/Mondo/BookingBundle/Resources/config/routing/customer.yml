@@ -28,3 +28,7 @@ customer_delete:
     path:     /{id}/delete
     defaults: { _controller: "MondoBookingBundle:Customer:delete" }
     requirements: { _method: post|delete }
+
+customer_verify:
+    path:     /{vernr}/verify
+    defaults: { _controller: "MondoBookingBundle:Customer:verify" }

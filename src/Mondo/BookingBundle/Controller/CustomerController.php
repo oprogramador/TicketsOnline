@@ -269,4 +269,20 @@ class CustomerController extends Controller implements ITranslateable
             ->getForm()
             ;
     }
+
+    public function verifyAction(Request $request, $vernr)
+    {
+        file_put_contents('/home/pierre/log.txt', "\n\nvernr=".$vernr, FILE_APPEND);
+        $em = $this->getDoctrine()->getManager();
+        file_put_contents('/home/pierre/log.txt', "\n\nmanager", FILE_APPEND);
+        $em->createQuery('UPDATE Mondo\BookingBundle\Entity\Customer x SET x.verified=1 WHERE x.vernr=:nr')
+            ->setParameter('nr', $vernr)
+            ->getResult()
+            ;
+        file_put_contents('/home/pierre/log.txt', "\n\nquery", FILE_APPEND);
+        $em->flush();
+        file_put_contents('/home/pierre/log.txt', "\n\nflush", FILE_APPEND);
+
+        return $this->redirect($this->generateUrl('customer'));
+    }
 }

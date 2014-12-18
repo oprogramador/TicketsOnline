@@ -1,15 +1,17 @@
 todo:
-    - validation
-    - translation
-    - multilang
-    - css
-    - js
-    - email confirmation
-    - indent
-    - removing unused code
-    - required and not
-    - delete logging
-    - dynamic info
-    - array with square brackets
-    - signature on each file
-    - startup script
+    backend:
+        correct_working: [no, 'app.php as well app_dev.php']
+        email_confirmation: no
+        multilang: no
+        pools: [no, 'required and not']
+        startup_script: no
+        translation: yes
+        validation: yes
+    code:
+        delete_logs: no
+        indent: [no, 'including curly style']
+        removing_unused_code: no
+        signature: [no, 'on each file']
+    frontend:
+        css: no
+        dynamic_info: no
