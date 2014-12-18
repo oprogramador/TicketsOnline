@@ -1,7 +1,7 @@
 todo:
     backend:
         correct_working: [no, 'app.php as well app_dev.php']
-        email_confirmation: no
+        email_confirmation: [no, 'not only localhost']
         multilang: no
         pools: [no, 'required and not']
         startup_script: no
