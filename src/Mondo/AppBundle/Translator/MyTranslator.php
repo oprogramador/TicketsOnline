@@ -9,7 +9,7 @@ class MyTranslator {
 	private $dic;
 
 	private function __construct() {
-		$this->dic = [];
+		$this->dic = array();
 	}
 
 	public static function getInstance() {

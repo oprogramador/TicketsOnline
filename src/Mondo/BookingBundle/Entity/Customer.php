@@ -45,14 +45,14 @@ class Customer
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=255)
+     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="gender", type="string", length=1)
+     * @ORM\Column(name="gender", type="string", length=1, nullable=true)
      */
     private $gender;
 
@@ -269,37 +269,37 @@ class Customer
 
     public static function validateChilds($object, ExecutionContextInterface $context) {
         if( $object->getChilds() > 4 )
-            $context->addViolationAt('childs', MyTranslator::trans('booking', 'customer.validation.childs'), array(), [null]);
+            $context->addViolationAt('childs', MyTranslator::trans('booking', 'customer.validation.childs'), array(), array(null));
     }
 
     public static function validateAdults($object, ExecutionContextInterface $context) {
         if( $object->getAdults() > 4 )
-            $context->addViolationAt('adults', MyTranslator::trans('booking', 'customer.validation.adults'), array(), [null]);
+            $context->addViolationAt('adults', MyTranslator::trans('booking', 'customer.validation.adults'), array(), array(null));
     }
 
     public static function validateSeniors($object, ExecutionContextInterface $context) {
         if( $object->getSeniors() > 3 )
-            $context->addViolationAt('seniors', MyTranslator::trans('booking', 'customer.validation.seniors'), array(), [null]);
+            $context->addViolationAt('seniors', MyTranslator::trans('booking', 'customer.validation.seniors'), array(), array(null));
     }
 
     public static function validateMin($object, ExecutionContextInterface $context) {
         if( $object->getTotalTickets() < 1 )
-            $context->addViolationAt('adults', MyTranslator::trans('booking', 'customer.validation.min'), array(), [null]);
+            $context->addViolationAt('adults', MyTranslator::trans('booking', 'customer.validation.min'), array(), array(null));
     }
 
     public static function validateMax($object, ExecutionContextInterface $context) {
         if( $object->getTotalTickets() > 6 )
-            $context->addViolationAt('adults', MyTranslator::trans('booking', 'customer.validation.max'), array(), [null]);
+            $context->addViolationAt('adults', MyTranslator::trans('booking', 'customer.validation.max'), array(), array(null));
     }
 
     public static function validateAdultChild($object, ExecutionContextInterface $context) {
         if( $object->getAdults()==0 ||  $object->getChilds() / $object->getAdults() > 4 )
-            $context->addViolationAt('adults', MyTranslator::trans('booking', 'customer.validation.adult_child'), array(), [null]);
+            $context->addViolationAt('adults', MyTranslator::trans('booking', 'customer.validation.adult_child'), array(), array(null));
     }
 
     public static function validateGender($object, ExecutionContextInterface $context) {
-        if( !in_array($object->getGender(), ['m', 'f'] ))
-            $context->addViolationAt('gender', MyTranslator::trans('booking', 'customer.validation.gender'), array(), [null]);
+        if( !in_array($object->getGender(), array('m', 'f') ))
+            $context->addViolationAt('gender', MyTranslator::trans('booking', 'customer.validation.gender'), array(), array(null));
     }
 
 
@@ -312,7 +312,7 @@ class Customer
             'validateMin',
             'validateMax',
             'validateAdultChild',
-            'validateGender'
+            //'validateGender'
         )));
     }
 

@@ -2,51 +2,18 @@
 
 {% block body -%}
     <h1>Customer</h1>
+    {% set properties = ['name', 'email', 'phone', 'gender', 'childs', 'adults', 'seniors'] %}
+
 
     <table class="record_properties">
         <tbody>
+        {% for prop in properties %}
             <tr>
-                <th>Name</th>
-                <td>{{ entity.name }}</td>
+                <th>{{ ('customer.properties.'~prop) | trans }}</th>
+                <td>{{ attribute(entity, prop)  }}</td>
             </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ entity.email }}</td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>{{ entity.phone }}</td>
-            </tr>
-            <tr>
-                <th>Gender</th>
-                <td>{{ entity.gender }}</td>
-            </tr>
-            <tr>
-                <th>Childs</th>
-                <td>{{ entity.childs }}</td>
-            </tr>
-            <tr>
-                <th>Adults</th>
-                <td>{{ entity.adults }}</td>
-            </tr>
-            <tr>
-                <th>Seniors</th>
-                <td>{{ entity.seniors }}</td>
-            </tr>
+        {% endfor %}
         </tbody>
     </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('customer') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('customer_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
 {% endblock %}

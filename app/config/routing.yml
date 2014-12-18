@@ -1,6 +1,6 @@
 mondo_booking:
     resource: "@MondoBookingBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}/
 
 app:
     resource: @AppBundle/Controller/

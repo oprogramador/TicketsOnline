@@ -1,10 +1,11 @@
 todo:
     backend:
-        correct_working: [no, 'app.php as well app_dev.php']
-        email_confirmation: [no, 'not only localhost']
+        correct_working: [yes, 'app.php as well app_dev.php']
+        email_confirmation: [yes, 'not only localhost']
+        email_checking: no
         multilang: no
-        pools: [no, 'required and not']
-        startup_script: no
+        pools: [yes, 'required and not']
+        startup_script: yes
         translation: yes
         validation: yes
     code:
@@ -15,3 +16,4 @@ todo:
     frontend:
         css: no
         dynamic_info: no
+        client_side_validation: no
