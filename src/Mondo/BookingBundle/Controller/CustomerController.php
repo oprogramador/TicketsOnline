@@ -10,6 +10,9 @@ use Mondo\BookingBundle\Form\CustomerType;
 use Mondo\AppBundle\Translator\MyTranslator;
 use Mondo\AppBundle\Translator\ITranslateable;
 
+use Mondo\AppBundle\Mailer\Mailer;
+use Mondo\AppBundle\Util\Util;
+
 /**
  * Customer controller.
  *
@@ -55,6 +58,22 @@ class CustomerController extends Controller implements ITranslateable
             'entities' => $entities,
         ));
     }
+
+    private function sendMail($to, $vernr) {
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Hello Email')
+            ->setFrom('send@example.com')
+            ->setTo($to)
+            ->setBody(
+                $this->renderView(
+                    'MondoBookingBundle:Mail:email.txt.twig',
+                    array('vernr' => $vernr)
+                )
+            )
+            ;
+        $this->get('mailer')->send($message);
+    }
+
     /**
      * Creates a new Customer entity.
      *
@@ -67,9 +86,12 @@ class CustomerController extends Controller implements ITranslateable
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->setVerified(false);
+            $entity->setVernr(Util::randStrAlpha(8));
             $em->persist($entity);
             $em->flush();
 
+            $this->sendMail($entity->getEmail(), $entity->getVernr());
             return $this->redirect($this->generateUrl('customer_show', array('id' => $entity->getId())));
         }
 
@@ -160,12 +182,12 @@ class CustomerController extends Controller implements ITranslateable
     }
 
     /**
-    * Creates a form to edit a Customer entity.
-    *
-    * @param Customer $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Customer entity.
+     *
+     * @param Customer $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Customer $entity)
     {
         $form = $this->createForm(new CustomerType(), $entity, array(
@@ -245,6 +267,6 @@ class CustomerController extends Controller implements ITranslateable
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
-        ;
+            ;
     }
 }

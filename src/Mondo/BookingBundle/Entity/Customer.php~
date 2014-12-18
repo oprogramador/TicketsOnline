@@ -338,27 +338,4 @@ class Customer
     {
         return $this->verified;
     }
-
-    /**
-     * Set vernr
-     *
-     * @param string $vernr
-     * @return Customer
-     */
-    public function setVernr($vernr)
-    {
-        $this->vernr = $vernr;
-
-        return $this;
-    }
-
-    /**
-     * Get vernr
-     *
-     * @return string 
-     */
-    public function getVernr()
-    {
-        return $this->vernr;
-    }
 }
