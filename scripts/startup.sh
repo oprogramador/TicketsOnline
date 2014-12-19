@@ -41,4 +41,4 @@ if [ ! -L /var/www/html/$path$project ]; then
     sudo ln -s `realpath .` /var/www/html/$path$project
 fi &&
 sudo /etc/init.d/apache2 restart &&
-gnome-open http://localhost/$path$project/web/app.php/ 
+gnome-open http://$domain/$path$project/web/app.php/en/

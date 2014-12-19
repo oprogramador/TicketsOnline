@@ -9,11 +9,13 @@ customer:
         childs: 'Number of children'
         adults: 'Number of adults'
         seniors: 'Number of seniors'
+        totalPrice: 'Total price'
     values:
         gender:
             m: 'Male'
             f: 'Female'
     validation:
+        email: 'This e-mail address does not exist.'
         childs: 'There cannot be more than 4 children.'
         adults: 'There cannot be more than 4 adults.'
         seniors: 'There cannot be more than 3 seniors.'

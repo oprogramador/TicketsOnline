@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-use Mondo\BookingBundle\Entity\CustomerValidator;
+use Mondo\BookingBundle\Controller\CustomerController;
 use Mondo\AppBundle\Translator\MyTranslator;
 
 /**
@@ -201,6 +201,7 @@ class Customer
      */
     public function getGenderLong()
     {
+        if(is_null($this->gender)) return null;
         return MyTranslator::trans('booking', 'customer.values.gender.'.$this->gender);
     }
 
@@ -277,6 +278,14 @@ class Customer
         return $this->childs +  $this->adults + $this->seniors;
     }
 
+    public static function validateEmail($object, ExecutionContextInterface $context) {
+        try {
+            CustomerController::$instance->mailAndVerif($object);
+        } catch(\Exception $e) {
+            $context->addViolationAt('email', MyTranslator::trans('booking', 'customer.validation.email'), array(), array(null));
+        }
+    }
+
     public static function validateChilds($object, ExecutionContextInterface $context) {
         if( $object->getChilds() > 4 )
             $context->addViolationAt('childs', MyTranslator::trans('booking', 'customer.validation.childs'), array(), array(null));
@@ -316,6 +325,7 @@ class Customer
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addConstraint(new Assert\Callback(array(
+            'validateEmail',
             'validateChilds',
             'validateAdults',
             'validateSeniors',
@@ -370,5 +380,21 @@ class Customer
     public function getVernr()
     {
         return $this->vernr;
+    }
+
+    private static function getTypePrice($em, $typeName) {
+        return $em->createQuery('SELECT x FROM Mondo\BookingBundle\Entity\TicketInfo x WHERE x.type=:type')
+            ->setParameter('type', $typeName)
+            ->getSingleResult()
+            ->getPrice();
+    }
+
+    public function getTotalPrice() {
+        $em = CustomerController::$instance->getDoctrineManager();
+        $childPrice = self::getTypePrice($em, 'child');
+        $adultPrice = self::getTypePrice($em, 'adult');
+        $seniorPrice = self::getTypePrice($em, 'senior');
+        $ret = $this->childs * $childPrice + $this->adults * $adultPrice + $this->seniors * $seniorPrice;
+        return number_format($ret, 2, '.', ' ');
     }
 }

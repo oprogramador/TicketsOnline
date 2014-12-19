@@ -40,11 +40,12 @@ class CustomerController extends Controller implements ITranslateable
         return $this->get('translator');
     }
 
+    public function getDoctrineManager() {
+        return $this->getDoctrine()->getManager();
+    }
 
     private function sendMail($to, $vernr) {
-        file_put_contents('/home/pierre/log.txt', "\n\nmail", FILE_APPEND);
         try {
-            file_put_contents('/home/pierre/log.txt', "\n\ntry", FILE_APPEND);
             $message = \Swift_Message::newInstance()
                 ->setSubject('Ticket booking confirmation')
                 ->setFrom('send@example.com')
@@ -58,8 +59,17 @@ class CustomerController extends Controller implements ITranslateable
                 ;
             $this->get('mailer')->send($message);
         } catch(\Exception $e) {
-            file_put_contents('/home/pierre/log.txt', "\n\ncatch", FILE_APPEND);
-            return $this->redirect($this->generateUrl('customer_new'));
+            throw $e;
+        }
+    }
+
+    public function mailAndVerif($entity) {
+        $entity->setVerified(false);
+        $entity->setVernr(Util::randStrAlpha(8));
+        try {
+            $this->sendMail($entity->getEmail(), $entity->getVernr());
+        } catch(\Exception $e) {
+            throw $e;
         }
     }
 
@@ -75,12 +85,9 @@ class CustomerController extends Controller implements ITranslateable
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity->setVerified(false);
-            $entity->setVernr(Util::randStrAlpha(8));
             $em->persist($entity);
             $em->flush();
 
-            $this->sendMail($entity->getEmail(), $entity->getVernr());
             return $this->redirect($this->generateUrl('customer_show', array('vernr' => $entity->getVernr())));
         }
 
@@ -115,7 +122,6 @@ class CustomerController extends Controller implements ITranslateable
      */
     public function newAction()
     {
-        echo __DIR__;
         $entity = new Customer();
         $form   = $this->createCreateForm($entity);
 
