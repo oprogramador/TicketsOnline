@@ -7,9 +7,10 @@ var childPrice={{ childPrice }};
 var adultPrice={{ adultPrice }};
 var seniorPrice={{ seniorPrice }};
 </script>
-{% javascripts '@MondoBookingBundle/Resources/public/js/totalPrice.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+{#{% javascripts '@MondoBookingBundle/Resources/public/js/totalPrice.js' %}#}
+    {#<script type="text/javascript" src="{{ asset_url }}"></script>#}
+{#{% endjavascripts %}#}
+<script type="text/javascript" src="{{ asset('../src/Mondo/BookingBundle/Resources/public/js/totalPrice.js') }}"></script>
 {% endblock %}
 
 {% block body -%}
