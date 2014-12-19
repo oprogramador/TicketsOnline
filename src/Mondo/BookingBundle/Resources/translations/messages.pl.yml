@@ -5,7 +5,7 @@ customer:
         name: 'Nazwisko'
         email: 'E-mail'
         phone: 'Numer telefonu'
-        gender: 'Płeć'
+        genderLong: 'Płeć'
         childs: 'Liczba dzieci'
         adults: 'Liczba dorosłych'
         seniors: 'Liczba seniorów'

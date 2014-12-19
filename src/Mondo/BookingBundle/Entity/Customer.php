@@ -195,6 +195,16 @@ class Customer
     }
 
     /**
+     * Get full name off gender using translations
+     *
+     * @return string 
+     */
+    public function getGenderLong()
+    {
+        return MyTranslator::trans('booking', 'customer.values.gender.'.$this->gender);
+    }
+
+    /**
      * Set childs
      *
      * @param integer $childs

@@ -1,6 +1,7 @@
 todo:
     backend:
         correct_working: [yes, 'app.php as well app_dev.php']
+        data_fixtures: [yes, 'from yaml']
         email_confirmation: [yes, 'not only localhost']
         email_checking: no
         multilang: no

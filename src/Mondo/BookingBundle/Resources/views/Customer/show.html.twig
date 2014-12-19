@@ -2,15 +2,17 @@
 
 {% block body -%}
     <h1>Customer</h1>
-    {% set properties = ['name', 'email', 'phone', 'gender', 'childs', 'adults', 'seniors'] %}
+    {% set properties = ['name', 'email', 'phone', 'genderLong', 'childs', 'adults', 'seniors'] %}
 
     <table class="record_properties">
         <tbody>
         {% for prop in properties %}
+            {% if attribute(entity, prop) is not null %}
             <tr>
                 <th>{{ ('customer.properties.'~prop) | trans }}</th>
                 <td>{{ attribute(entity, prop)  }}</td>
             </tr>
+            {% endif %}
         {% endfor %}
         </tbody>
     </table>

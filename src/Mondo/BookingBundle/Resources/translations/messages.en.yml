@@ -5,7 +5,7 @@ customer:
         name: 'Name'
         email: 'E-mail'
         phone: 'Phone number'
-        gender: 'Gender'
+        genderLong: 'Gender'
         childs: 'Number of children'
         adults: 'Number of adults'
         seniors: 'Number of seniors'

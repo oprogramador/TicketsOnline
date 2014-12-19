@@ -1,0 +1,10 @@
+Mondo\BookingBundle\Entity\TicketInfo:
+    ti1:
+        type: child
+        price: 12
+    ti2:
+        type: adult
+        price: 24
+    ti3:
+        type: senior
+        price: 15.5

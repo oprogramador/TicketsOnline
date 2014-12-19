@@ -21,7 +21,7 @@ class CustomerType extends AbstractType
             ->add('email', 'text', array( 'required' => true, 'label' => MyTranslator::trans('booking', 'customer.properties.email')))
             ->add('phone', 'text', array( 'required' => false, 'label' => MyTranslator::trans('booking', 'customer.properties.phone')))
             ->add('gender', 'choice', array('choices'  => array('m' => 'Male', 'f' => 'Female'), 'required' => false,
-                'label' => MyTranslator::trans('booking', 'customer.properties.gender')))
+                'label' => MyTranslator::trans('booking', 'customer.properties.genderLong')))
             ->add('childs', 'integer', array('required' => true, 'data' => 0, 'attr' => array('min' => 0),
                 'label' => MyTranslator::trans('booking', 'customer.properties.childs')))
             ->add('adults', 'integer', array('required' => true, 'data' => 0, 'attr' => array('min' => 0),

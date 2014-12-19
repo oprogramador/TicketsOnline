@@ -115,6 +115,7 @@ class CustomerController extends Controller implements ITranslateable
      */
     public function newAction()
     {
+        echo __DIR__;
         $entity = new Customer();
         $form   = $this->createCreateForm($entity);
 
