@@ -91,7 +91,14 @@ class CustomerController extends Controller implements ITranslateable
             return $this->redirect($this->generateUrl('customer_show', array('vernr' => $entity->getVernr())));
         }
 
+        return $this->renderCreateForm($entity, $form);
+    }
+
+    private function renderCreateForm($entity, $form) {
         return $this->render('MondoBookingBundle:Customer:new.html.twig', array(
+            'childPrice' => $this->getTypePrice('child'),
+            'adultPrice' => $this->getTypePrice('adult'),
+            'seniorPrice' => $this->getTypePrice('senior'),
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -125,10 +132,7 @@ class CustomerController extends Controller implements ITranslateable
         $entity = new Customer();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('MondoBookingBundle:Customer:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+        return $this->renderCreateForm($entity, $form);
     }
 
     /**
@@ -161,6 +165,14 @@ class CustomerController extends Controller implements ITranslateable
             ;
         $em->flush();
 
-        return $this->redirect($this->generateUrl('customer'));
+        return $this->redirect($this->generateUrl('customer_show', array('vernr' => $vernr)));
+    }
+
+    public function getTypePrice($typeName) {
+        $em = CustomerController::$instance->getDoctrineManager();
+        return $em->createQuery('SELECT x FROM Mondo\BookingBundle\Entity\TicketInfo x WHERE x.type=:type')
+            ->setParameter('type', $typeName)
+            ->getSingleResult()
+            ->getPrice();
     }
 }

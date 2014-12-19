@@ -3,7 +3,7 @@ todo:
         correct_working: [yes, 'app.php as well app_dev.php']
         data_fixtures: [yes, 'from yaml']
         email_confirmation: [yes, 'not only localhost']
-        email_checking: no
+        email_checking: yes
         multilang: no
         pools: [yes, 'required and not']
         startup_script: yes
@@ -18,6 +18,6 @@ todo:
         signature: [no, 'on each file']
     frontend:
         css: no
-        dynamic_info: no
+        dynamic_info: yes
         client_side_validation: no
         verification_info: no

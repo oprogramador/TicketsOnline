@@ -15,6 +15,7 @@ customer:
             m: 'Mężczyzna'
             f: 'Kobieta'
     validation:
+        not_blank: 'To pole nie powinno być puste.'
         email: 'Podany adres e-mail nie istnieje.'
         childs: 'Nie może być więcej niż 4 dzieci.'
         adults: 'Nie może być więcej niż 4 dorosłych.'

@@ -15,6 +15,7 @@ customer:
             m: 'Male'
             f: 'Female'
     validation:
+        not_blank: 'This field should not be blank.'
         email: 'This e-mail address does not exist.'
         childs: 'There cannot be more than 4 children.'
         adults: 'There cannot be more than 4 adults.'

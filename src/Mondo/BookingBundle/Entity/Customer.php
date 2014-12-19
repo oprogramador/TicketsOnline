@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 use Mondo\BookingBundle\Controller\CustomerController;
 use Mondo\AppBundle\Translator\MyTranslator;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Customer
@@ -324,6 +325,11 @@ class Customer
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
+        $ar = array('name', 'email', 'childs', 'adults', 'seniors');
+        foreach($ar as $i) 
+            $metadata->addPropertyConstraint($i, new NotBlank(array(
+                'message' => MyTranslator::trans('booking', 'customer.validation.not_blank'),
+            ))); 
         $metadata->addConstraint(new Assert\Callback(array(
             'validateEmail',
             'validateChilds',
@@ -382,19 +388,14 @@ class Customer
         return $this->vernr;
     }
 
-    private static function getTypePrice($em, $typeName) {
-        return $em->createQuery('SELECT x FROM Mondo\BookingBundle\Entity\TicketInfo x WHERE x.type=:type')
-            ->setParameter('type', $typeName)
-            ->getSingleResult()
-            ->getPrice();
+    public function getTotalPrice() {
+        return number_format($this->getTotalPriceNum(), 2, '.', ' ');
     }
 
-    public function getTotalPrice() {
-        $em = CustomerController::$instance->getDoctrineManager();
-        $childPrice = self::getTypePrice($em, 'child');
-        $adultPrice = self::getTypePrice($em, 'adult');
-        $seniorPrice = self::getTypePrice($em, 'senior');
-        $ret = $this->childs * $childPrice + $this->adults * $adultPrice + $this->seniors * $seniorPrice;
-        return number_format($ret, 2, '.', ' ');
+    public function getTotalPriceNum() {
+        $childPrice = CustomerController::$instance->getTypePrice('child');
+        $adultPrice = CustomerController::$instance->getTypePrice('adult');
+        $seniorPrice = CustomerController::$instance->getTypePrice('senior');
+        return $this->childs * $childPrice + $this->adults * $adultPrice + $this->seniors * $seniorPrice;
     }
 }

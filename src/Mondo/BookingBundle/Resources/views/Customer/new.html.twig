@@ -1,9 +1,20 @@
-{% extends '::base.html.twig' %}
+{% extends 'MondoBookingBundle::layout.html.twig' %}
+
+{% block javascripts %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+var childPrice={{ childPrice }};
+var adultPrice={{ adultPrice }};
+var seniorPrice={{ seniorPrice }};
+</script>
+{% javascripts '@MondoBookingBundle/Resources/public/js/totalPrice.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
 
 {% block body -%}
     <h1>{{ 'customer.extra.new' | trans }}</h1>
     {#{{ form_widget(form._token) }}#}
     {{ form(form) }}
-
-</ul>
+    <p id="totalPrice"></p>
 {% endblock %}

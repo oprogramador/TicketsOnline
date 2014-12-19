@@ -16,17 +16,20 @@ class CustomerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $msg = MyTranslator::trans('booking', 'customer.validation.not_blank');
+        $attr = array('oninvalid' => "setCustomValidity('$msg')");
+
         $builder
-            ->add('name', 'text', array( 'required' => true, 'label' => MyTranslator::trans('booking', 'customer.properties.name')))
-            ->add('email', 'text', array( 'required' => true, 'label' => MyTranslator::trans('booking', 'customer.properties.email')))
+            ->add('name', 'text', array( 'required' => true, 'attr' => $attr, 'label' => MyTranslator::trans('booking', 'customer.properties.name')))
+            ->add('email', 'text', array( 'required' => true, 'attr' => $attr, 'label' => MyTranslator::trans('booking', 'customer.properties.email')))
             ->add('phone', 'text', array( 'required' => false, 'label' => MyTranslator::trans('booking', 'customer.properties.phone')))
             ->add('gender', 'choice', array('choices'  => array('m' => 'Male', 'f' => 'Female'), 'required' => false,
                 'label' => MyTranslator::trans('booking', 'customer.properties.genderLong')))
-            ->add('childs', 'integer', array('required' => true, 'data' => 0, 'attr' => array('min' => 0),
+            ->add('childs', 'integer', array('required' => true, 'attr' => $attr, 'data' => 0, 'attr' => array('min' => 0),
                 'label' => MyTranslator::trans('booking', 'customer.properties.childs')))
-            ->add('adults', 'integer', array('required' => true, 'data' => 1, 'attr' => array('min' => 0),
+            ->add('adults', 'integer', array('required' => true, 'attr' => $attr, 'data' => 1, 'attr' => array('min' => 0),
                 'label' => MyTranslator::trans('booking', 'customer.properties.adults')))
-            ->add('seniors', 'integer', array('required' => true, 'data' => 0, 'attr' => array('min' => 0),
+            ->add('seniors', 'integer', array('required' => true, 'attr' => $attr, 'data' => 0, 'attr' => array('min' => 0),
                 'label' => MyTranslator::trans('booking', 'customer.properties.seniors')))
         ;
     }
