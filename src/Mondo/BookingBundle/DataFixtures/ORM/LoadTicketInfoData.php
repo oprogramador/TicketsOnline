@@ -1,4 +1,9 @@
 <?php
+/**************************************
+ *
+ * Author: Piotr Sroczkowski
+ *
+**************************************/
 namespace Mondo\CustomerBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;

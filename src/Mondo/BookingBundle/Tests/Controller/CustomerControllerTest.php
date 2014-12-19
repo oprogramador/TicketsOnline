@@ -1,14 +1,17 @@
 <?php
+/**************************************
+ *
+ * Author: Piotr Sroczkowski
+ *
+**************************************/
 
 namespace Mondo\BookingBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class CustomerControllerTest extends WebTestCase
-{
+class CustomerControllerTest extends WebTestCase {
     /*
-    public function testCompleteScenario()
-    {
+    public function testCompleteScenario() {
         // Create a new client to browse the application
         $client = static::createClient();
 

@@ -1,4 +1,9 @@
 <?php
+/**************************************
+ *
+ * Author: Piotr Sroczkowski
+ *
+**************************************/
 namespace Mondo\AppBundle\Util;
 
 class Util {

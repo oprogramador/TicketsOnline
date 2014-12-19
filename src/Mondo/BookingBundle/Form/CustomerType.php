@@ -1,4 +1,9 @@
 <?php
+/**************************************
+ *
+ * Author: Piotr Sroczkowski
+ *
+**************************************/
 
 namespace Mondo\BookingBundle\Form;
 
@@ -8,14 +13,12 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Mondo\AppBundle\Translator\MyTranslator;
 
-class CustomerType extends AbstractType
-{
+class CustomerType extends AbstractType {
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $msg = MyTranslator::trans('booking', 'customer.validation.not_blank');
         $attr = array('oninvalid' => "setCustomValidity('$msg')");
 
@@ -37,8 +40,7 @@ class CustomerType extends AbstractType
     /**
      * @param OptionsResolverInterface $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
+    public function setDefaultOptions(OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'Mondo\BookingBundle\Entity\Customer'
         ));
@@ -47,8 +49,7 @@ class CustomerType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return 'mondo_bookingbundle_customer';
     }
 }

@@ -1,4 +1,9 @@
 <?php
+/**************************************
+ *
+ * Author: Piotr Sroczkowski
+ *
+**************************************/
 
 namespace Mondo\BookingBundle\Entity;
 
@@ -17,8 +22,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Customer
-{
+class Customer {
 
     /**
      * @var integer
@@ -98,8 +102,7 @@ class Customer
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -109,8 +112,7 @@ class Customer
      * @param string $name
      * @return Customer
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -121,8 +123,7 @@ class Customer
      *
      * @return string 
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -132,8 +133,7 @@ class Customer
      * @param string $email
      * @return Customer
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
 
         return $this;
@@ -144,8 +144,7 @@ class Customer
      *
      * @return string 
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -155,8 +154,7 @@ class Customer
      * @param string $phone
      * @return Customer
      */
-    public function setPhone($phone)
-    {
+    public function setPhone($phone) {
         $this->phone = $phone;
 
         return $this;
@@ -167,8 +165,7 @@ class Customer
      *
      * @return string 
      */
-    public function getPhone()
-    {
+    public function getPhone() {
         return $this->phone;
     }
 
@@ -178,8 +175,7 @@ class Customer
      * @param string $gender
      * @return Customer
      */
-    public function setGender($gender)
-    {
+    public function setGender($gender) {
         $this->gender = $gender;
 
         return $this;
@@ -190,8 +186,7 @@ class Customer
      *
      * @return string 
      */
-    public function getGender()
-    {
+    public function getGender() {
         return $this->gender;
     }
 
@@ -200,8 +195,7 @@ class Customer
      *
      * @return string 
      */
-    public function getGenderLong()
-    {
+    public function getGenderLong() {
         if(is_null($this->gender)) return null;
         return MyTranslator::trans('booking', 'customer.values.gender.'.$this->gender);
     }
@@ -212,8 +206,7 @@ class Customer
      * @param integer $childs
      * @return Customer
      */
-    public function setChilds($childs)
-    {
+    public function setChilds($childs) {
         $this->childs = $childs;
 
         return $this;
@@ -224,8 +217,7 @@ class Customer
      *
      * @return integer 
      */
-    public function getChilds()
-    {
+    public function getChilds() {
         return $this->childs;
     }
 
@@ -235,8 +227,7 @@ class Customer
      * @param integer $adults
      * @return Customer
      */
-    public function setAdults($adults)
-    {
+    public function setAdults($adults) {
         $this->adults = $adults;
 
         return $this;
@@ -247,8 +238,7 @@ class Customer
      *
      * @return integer 
      */
-    public function getAdults()
-    {
+    public function getAdults() {
         return $this->adults;
     }
 
@@ -258,8 +248,7 @@ class Customer
      * @param integer $seniors
      * @return Customer
      */
-    public function setSeniors($seniors)
-    {
+    public function setSeniors($seniors) {
         $this->seniors = $seniors;
 
         return $this;
@@ -270,8 +259,7 @@ class Customer
      *
      * @return integer 
      */
-    public function getSeniors()
-    {
+    public function getSeniors() {
         return $this->seniors;
     }
 
@@ -323,8 +311,7 @@ class Customer
     }
 
 
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
+    public static function loadValidatorMetadata(ClassMetadata $metadata) {
         $ar = array('name', 'email', 'childs', 'adults', 'seniors');
         foreach($ar as $i) 
             $metadata->addPropertyConstraint($i, new NotBlank(array(
@@ -348,8 +335,7 @@ class Customer
      * @param boolean $verified
      * @return Customer
      */
-    public function setVerified($verified)
-    {
+    public function setVerified($verified) {
         $this->verified = $verified;
 
         return $this;
@@ -360,8 +346,7 @@ class Customer
      *
      * @return boolean 
      */
-    public function getVerified()
-    {
+    public function getVerified() {
         return $this->verified;
     }
 
@@ -371,8 +356,7 @@ class Customer
      * @param string $vernr
      * @return Customer
      */
-    public function setVernr($vernr)
-    {
+    public function setVernr($vernr) {
         $this->vernr = $vernr;
 
         return $this;
@@ -383,8 +367,7 @@ class Customer
      *
      * @return string 
      */
-    public function getVernr()
-    {
+    public function getVernr() {
         return $this->vernr;
     }
 
@@ -399,8 +382,7 @@ class Customer
         return $this->childs * $childPrice + $this->adults * $adultPrice + $this->seniors * $seniorPrice;
     }
 
-    public function getVerifiedLong()
-    {
+    public function getVerifiedLong() {
         if(is_null($this->verified)) return null;
         return MyTranslator::trans('booking', 'customer.values.verified.'.($this->verified ? 'y' : 'n'));
     }

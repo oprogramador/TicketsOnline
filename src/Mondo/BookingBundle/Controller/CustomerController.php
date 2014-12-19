@@ -1,4 +1,9 @@
 <?php
+/**************************************
+ *
+ * Author: Piotr Sroczkowski
+ *
+**************************************/
 
 namespace Mondo\BookingBundle\Controller;
 
@@ -17,8 +22,7 @@ use Mondo\AppBundle\Util\Util;
  * Customer controller.
  *
  */
-class CustomerController extends Controller implements ITranslateable 
-{
+class CustomerController extends Controller implements ITranslateable  {
 
     public static $instance;
 
@@ -77,8 +81,7 @@ class CustomerController extends Controller implements ITranslateable
      * Creates a new Customer entity.
      *
      */
-    public function createAction(Request $request)
-    {
+    public function createAction(Request $request) {
         $entity = new Customer();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -111,8 +114,7 @@ class CustomerController extends Controller implements ITranslateable
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Customer $entity)
-    {
+    private function createCreateForm(Customer $entity) {
         $form = $this->createForm(new CustomerType(), $entity, array(
             'action' => $this->generateUrl('customer_create'),
             'method' => 'POST',
@@ -127,8 +129,7 @@ class CustomerController extends Controller implements ITranslateable
      * Displays a form to create a new Customer entity.
      *
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new Customer();
         $form   = $this->createCreateForm($entity);
 
@@ -139,8 +140,7 @@ class CustomerController extends Controller implements ITranslateable
      * Finds and displays a Customer entity.
      *
      */
-    public function showAction($vernr)
-    {
+    public function showAction($vernr) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->createQuery('SELECT x FROM Mondo\BookingBundle\Entity\Customer x WHERE x.vernr=:nr')
@@ -156,8 +156,7 @@ class CustomerController extends Controller implements ITranslateable
         ));
     }
 
-    public function verifyAction(Request $request, $vernr)
-    {
+    public function verifyAction(Request $request, $vernr) {
         $em = $this->getDoctrine()->getManager();
         $em->createQuery('UPDATE Mondo\BookingBundle\Entity\Customer x SET x.verified=1 WHERE x.vernr=:nr')
             ->setParameter('nr', $vernr)

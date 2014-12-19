@@ -1,4 +1,9 @@
 <?php
+/**************************************
+ *
+ * Author: Piotr Sroczkowski
+ *
+**************************************/
 
 namespace Mondo\BookingBundle\Entity;
 
@@ -10,8 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class TicketInfo
-{
+class TicketInfo {
     /**
      * @var integer
      *
@@ -41,8 +45,7 @@ class TicketInfo
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -52,8 +55,7 @@ class TicketInfo
      * @param string $type
      * @return TicketInfo
      */
-    public function setType($type)
-    {
+    public function setType($type) {
         $this->type = $type;
 
         return $this;
@@ -64,8 +66,7 @@ class TicketInfo
      *
      * @return string 
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -75,8 +76,7 @@ class TicketInfo
      * @param float $price
      * @return TicketInfo
      */
-    public function setPrice($price)
-    {
+    public function setPrice($price) {
         $this->price = $price;
 
         return $this;
@@ -87,8 +87,7 @@ class TicketInfo
      *
      * @return float 
      */
-    public function getPrice()
-    {
+    public function getPrice() {
         return $this->price;
     }
 }
