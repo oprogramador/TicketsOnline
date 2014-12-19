@@ -1,6 +1,7 @@
 customer:
     extra:
         new: 'Nowa rezerwacja'
+        show: 'Szczegóły rezerwacji'
     properties:
         name: 'Nazwisko'
         email: 'E-mail'
@@ -10,10 +11,14 @@ customer:
         adults: 'Liczba dorosłych'
         seniors: 'Liczba seniorów'
         totalPrice: 'Łączna cena'
+        verifiedLong: 'Potwierdzono'
     values:
         gender:
             m: 'Mężczyzna'
             f: 'Kobieta'
+        verified:
+            y: 'Yes'
+            n: 'No'
     validation:
         not_blank: 'To pole nie powinno być puste.'
         email: 'Podany adres e-mail nie istnieje.'

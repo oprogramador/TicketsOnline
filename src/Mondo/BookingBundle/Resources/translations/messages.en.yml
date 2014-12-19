@@ -1,6 +1,7 @@
 customer:
     extra:
         new: 'New booking'
+        show: 'Booking details'
     properties:
         name: 'Name'
         email: 'E-mail'
@@ -10,10 +11,14 @@ customer:
         adults: 'Number of adults'
         seniors: 'Number of seniors'
         totalPrice: 'Total price'
+        verifiedLong: 'Verified'
     values:
         gender:
             m: 'Male'
             f: 'Female'
+        verified:
+            y: 'Yes'
+            n: 'No'
     validation:
         not_blank: 'This field should not be blank.'
         email: 'This e-mail address does not exist.'

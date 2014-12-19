@@ -1,8 +1,8 @@
 {% extends 'MondoBookingBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1>Customer</h1>
-    {% set properties = ['name', 'email', 'phone', 'genderLong', 'childs', 'adults', 'seniors', 'totalPrice'] %}
+    <h1>{{ 'customer.extra.show' | trans }}</h1>
+    {% set properties = ['name', 'email', 'phone', 'genderLong', 'childs', 'adults', 'seniors', 'totalPrice', 'verifiedLong'] %}
 
     <table class="record_properties">
         <tbody>

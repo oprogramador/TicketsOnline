@@ -398,4 +398,10 @@ class Customer
         $seniorPrice = CustomerController::$instance->getTypePrice('senior');
         return $this->childs * $childPrice + $this->adults * $adultPrice + $this->seniors * $seniorPrice;
     }
+
+    public function getVerifiedLong()
+    {
+        if(is_null($this->verified)) return null;
+        return MyTranslator::trans('booking', 'customer.values.verified.'.($this->verified ? 'y' : 'n'));
+    }
 }

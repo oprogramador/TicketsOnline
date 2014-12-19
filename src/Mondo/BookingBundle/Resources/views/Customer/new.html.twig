@@ -16,5 +16,6 @@ var seniorPrice={{ seniorPrice }};
     <h1>{{ 'customer.extra.new' | trans }}</h1>
     {#{{ form_widget(form._token) }}#}
     {{ form(form) }}
-    <p id="totalPrice"></p>
+    <span style="float:left">{{ 'customer.properties.totalPrice' | trans }}:&nbsp</span>
+    <span id="totalPrice" style="float:left"></span>
 {% endblock %}
