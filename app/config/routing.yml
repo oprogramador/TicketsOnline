@@ -1,7 +1,3 @@
 mondo_booking:
     resource: "@MondoBookingBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
-
-app:
-    resource: @AppBundle/Controller/
-    type:     annotation

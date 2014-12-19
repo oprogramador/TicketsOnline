@@ -1,9 +1,9 @@
 customer:
     path:     /
-    defaults: { _controller: "MondoBookingBundle:Customer:index" }
+    defaults: { _controller: "MondoBookingBundle:Customer:new" }
 
 customer_show:
-    path:     /{id}/show
+    path:     /{vernr}/show
     defaults: { _controller: "MondoBookingBundle:Customer:show" }
 
 customer_new:
@@ -14,20 +14,6 @@ customer_create:
     path:     /create
     defaults: { _controller: "MondoBookingBundle:Customer:create" }
     requirements: { _method: post }
-
-customer_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "MondoBookingBundle:Customer:edit" }
-
-customer_update:
-    path:     /{id}/update
-    defaults: { _controller: "MondoBookingBundle:Customer:update" }
-    requirements: { _method: post|put }
-
-customer_delete:
-    path:     /{id}/delete
-    defaults: { _controller: "MondoBookingBundle:Customer:delete" }
-    requirements: { _method: post|delete }
 
 customer_verify:
     path:     /{vernr}/verify

@@ -4,7 +4,6 @@
     <h1>Customer</h1>
     {% set properties = ['name', 'email', 'phone', 'gender', 'childs', 'adults', 'seniors'] %}
 
-
     <table class="record_properties">
         <tbody>
         {% for prop in properties %}
@@ -15,5 +14,7 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <a href="{{ path('customer') }}">{{ 'back' | trans  }}</a>
 
 {% endblock %}

@@ -10,7 +10,9 @@ todo:
         validation: yes
     code:
         delete_logs: no
-        indent: [no, 'including curly style']
+        indent:
+            curly_style: no
+            empty_lines: no
         removing_unused_code: no
         signature: [no, 'on each file']
     frontend:
